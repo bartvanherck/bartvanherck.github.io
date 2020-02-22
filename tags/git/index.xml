@@ -17,7 +17,18 @@
       <pubDate>Sat, 29 Jun 2019 18:00:00 +0100</pubDate>
       
       <guid>http://bartvanherck.github.io/blog/20190629_readed/</guid>
-      <description>I read a lot. This post contains some links to documents that every tester should read.</description>
+      <description>&lt;p&gt;Some documents that are really usefull to read:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/tools/htsm.pdf&#34;&gt;Heuristic Test Strategy Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/rst.pdf&#34;&gt;Rapid Software Testing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/rst-appendices.pdf&#34;&gt;Rapid Software Testing Appendices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/articles/et-article.pdf&#34;&gt;Exploratory Testing Explained&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.thetesteye.com/papers/TheLittleBlackBookOnTestDesign.pdf&#34;&gt;The Little Black Book on Test Design&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://testobsessed.com/wp-content/uploads/2011/04/testheuristicscheatsheetv1.pdf&#34;&gt;Test Heuristic Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Happy reading!&lt;/p&gt;
+<br /><div><a href="http://bartvanherck.github.io/blog/20190629_readed/">Read the complete article.</a></div>
+      </description>
     </item>
     
   </channel>
