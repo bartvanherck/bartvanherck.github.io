@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.65.2" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>Reasons to create Unit Tests | Testing is Fun</title>
+	<meta name="description" content="mijn site">
+	<meta name="keywords" content="testing, software, javascript, python">
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://bartvanherck.github.io/blog/20190614_reasons/finish_cover.jpg"/>
+<meta name="twitter:title" content="Reasons to create Unit Tests"/>
+<meta name="twitter:description" content="Writing unit tests for API&rsquo;s is a waste of time. While developing an API it looks so. Today I need to rewrite some calls and all my tests fail. I need to update all the unit tests. If I did not have to write tests, my code was already finished. But that is a mistake."/>
+
+	<meta property="og:title" content="Reasons to create Unit Tests" />
+<meta property="og:description" content="Writing unit tests for API&rsquo;s is a waste of time. While developing an API it looks so. Today I need to rewrite some calls and all my tests fail. I need to update all the unit tests. If I did not have to write tests, my code was already finished. But that is a mistake." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://bartvanherck.github.io/blog/20190614_reasons/" />
+<meta property="og:image" content="http://bartvanherck.github.io/blog/20190614_reasons/finish_cover.jpg"/>
+<meta property="article:published_time" content="2019-06-14T18:00:00+01:00" />
+<meta property="article:modified_time" content="2019-06-14T18:00:00+01:00" />
+
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="http://bartvanherck.github.io//">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://linkedin.com/in/bart-vanherck"><i class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://twitter.com/vherckb"><i class="fab fa-twitter social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://github.com/bartvanherck"><i class="fab fa-github social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">Testing is Fun</h1>
+    <p class="lead">
+         Mijn custom description
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Reasons%20to%20create%20Unit%20Tests&url=http%3a%2f%2fbartvanherck.github.io%2fblog%2f20190614_reasons%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=http%3a%2f%2fbartvanherck.github.io%2fblog%2f20190614_reasons%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>       
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-10 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/images/author.jpg" alt="Bart">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">Bart</a><br>
+                                <span class="author-description">
+                                    Software Tester<br>
+                                    <i class="far fa-star"></i>
+                                    Jun 14, 2019
+                                    <i class="far fa-clock clock"></i>
+                                    5 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">Reasons to create Unit Tests</h1> 
+                    </div>
+
+                    
+                    
+                    
+                        <img class="featured-image img-fluid" src="http://bartvanherck.github.io/blog/20190614_reasons/finish_cover.jpg" alt="thumbnail for this post">
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        <p>Writing unit tests for API&rsquo;s is a waste of time. A waste of time? Yes, I am developing an API. The API is not stable yet. Today I need to rewrite some calls and now all my tests fail. I need to update all those unit tests. If I did not have to write tests, my code was already finished.</p>
+<p>Yes, it is. By changing an interface or API, you need to update the existing tests. It is possible that many tests needs an update. Updating tests takes some time and costs something. Does this mean that writing unit tests is a waste of time?</p>
+<h3 id="unit-testing-is-like-walking">Unit Testing is like walking.</h3>
+<p>Unit testing is like trying to do a long distance walk. You want to walk 100 km in 24 hours. You start to train. Each weekend you go for a walk. It goes well in the beginning. You can walk 10 km, a few weeks later you walk 20 km. Then you are training to go more kilometres. After 25 km, you feel pain in your feet. You are thinking: &ldquo;Why am I doing this? Why am I hurting myself?&rdquo;  That pains stays several weeks.</p>
+<p>By the time it is getting better, there is something else that has more priority. Some people have their birthday. The party is on a day that you planned to go for a walk. You skip. The week after that something else interferes with your walking plans. After a few weeks without any walk you decide to go again. Ambitious as you are, you start with 30 kilometres. But everything hurts after 20 kilometres. You ask yourself again why you are doing it?</p>
+<p>While you walk, you see other walkers. They never had problems with pain and go much faster as you. They also go twice the distance as you are doing. How do they do that? But they do not have as many friends as you have. And their friends never celebrate their birthdays. They have much more time to walk.</p>
+<p>You have two options. The first option is to quit. You conclude that you do not have anything in common with them. In the end you conclude that a long distance walk is nothing for you. You never walk again.  The second option is to start over and try until you manage to walk the distance that you want to walk. The second option is the hardest, but in the end it was worth the effort.</p>
+<h3 id="safety-net">Safety net</h3>
+<p>Unit testing is not easy. You can start to create unit tests and create each day more unit tests. In the end you have many unit tests. No, that was not our initial problem. The problem was that the developer needs to update too many unit tests.</p>
+<figure>
+    <img src="api_overview.jpg"/> <figcaption>
+            <h4>Drawing</h4>
+        </figcaption>
+</figure>
+
+<p>You have a system with an API. The API does probably have more than one call. If you do not write any tests for the API&rsquo;s, none of them have any tests. What happens if you update a function that also has some impact on an other function? What happens if you as developer make a mistake and the other API&rsquo;s are failing? Do you want to know while you are developing that your other interfaces are failing? I suppose you do. If you do not have any unit tests on API level or in another part, your do not know if something else in the system is failing. Unit tests are the safety net for the existing functionality that you do not touch.</p>
+<h3 id="design">Design</h3>
+<p>Unit testing has more advantages. By creating unit tests on an interface, you are thinking about how you should use that interface (or API). Maybe the API is not that useful when you use it. The design of the API was not good. The usage of the API via the unit tests proves that.</p>
+<h3 id="stable">Stable</h3>
+<p>Unit tests test a small piece of code. That means that the tests are more stable than an automated user interface test. User interface tests are more flaky. They tend to fail without any reason. They also have problems with variations on the network speed. They are more complex to debug when they fail. The code that they cover is bigger. In case a unit test fails, the developer does not have to debug in most cases. He knows which part of the code a test covers.</p>
+<h3 id="documentation">Documentation</h3>
+<p>Write some documentation. Your other colleagues do also need to know how your code looks like. Unit test are ideal for documenting code. A developer can look at a unit test to see how to call some part of the code. You do not have to document the usage anymore. It is in the set of unit tests.</p>
+<h3 id="speed">Speed</h3>
+<p>The fastest tests are unit tests. The execution of one tests is in the range of milliseconds. In the same time as you run one end to end test, you can do a lot of unit tests. End to end tests are slow because they imitate  a user. Because of the fast execution times there is a fast feedback. You as developer can run the tests during the development process. You will check if the system is still performing like it was before your changes. Faster feedback is cheaper, everybody knows it by now. You will find bugs earlier in the development cycle by the unit tests. The cost of a bug is much lower.</p>
+<h3 id="continuous-integration-server">Continuous Integration Server</h3>
+<p>Writing unit tests is a very good idea. It is better to run them in an automated way on a continuous integration server. Then the server executes the tests as soon as you put the new code in version control. Everybody notices it when the tests are failing on the continuous integration server. This is an advantage. Developers will fix the failing tests much faster. Nobody likes a failing build.</p>
+<h3 id="wrap-up">Wrap up</h3>
+<p>Writing unit tests is a good way of working. In the beginning it is hard. It is worth the effort. The end user will be much happier with a product that has less bugs.</p>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/testing">testing</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                        <a class="d-block col-md-6" href="http://bartvanherck.github.io/blog/20190629_readed/"> &laquo; What I read</a>
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="http://bartvanherck.github.io/blog/20190613_reports/">Test Reports are Dead &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/git">git</a>
+			
+			<a class="mt-1 mb-1" href="/tags/interesting">interesting</a>
+			
+			<a class="mt-1 mb-1" href="/tags/post">post</a>
+			
+			<a class="mt-1 mb-1" href="/tags/testing">testing</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+    </body>
+</html>
