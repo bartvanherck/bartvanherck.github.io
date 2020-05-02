@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.69.2" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>xslt transformations in Java | Testing is Fun</title>
+	<meta name="description" content="mijn site">
+	<meta name="keywords" content="testing, software, javascript, python">
+
+	<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://bartvanherck.github.io/20200502_xsltinjava/cover.jpg"/>
+<meta name="twitter:title" content="xslt transformations in Java"/>
+<meta name="twitter:description" content="How should we test xslt transformations in java? Is the solution that we found on the most examples located on the internet suitable for us? In our case we still had problems that our tests where failing. The solution is not correct. This means we need another approach."/>
+
+	<meta property="og:title" content="xslt transformations in Java" />
+<meta property="og:description" content="How should we test xslt transformations in java? Is the solution that we found on the most examples located on the internet suitable for us? In our case we still had problems that our tests where failing. The solution is not correct. This means we need another approach." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://bartvanherck.github.io/20200502_xsltinjava/" />
+<meta property="og:image" content="http://bartvanherck.github.io/20200502_xsltinjava/cover.jpg"/>
+<meta property="article:published_time" content="2020-05-02T10:00:00+01:00" />
+<meta property="article:modified_time" content="2020-05-02T10:00:00+01:00" />
+
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="http://bartvanherck.github.io/">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://linkedin.com/in/bart-vanherck"><i class="fab fa-linkedin social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://twitter.com/vherckb"><i class="fab fa-twitter social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a href="https://github.com/bartvanherck"><i class="fab fa-github social-icon" aria-hidden="true"></i></a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">Testing is Fun</h1>
+    <p class="lead">
+         Mijn custom description
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Share</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=xslt%20transformations%20in%20Java&url=http%3a%2f%2fbartvanherck.github.io%2f20200502_xsltinjava%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=http%3a%2f%2fbartvanherck.github.io%2f20200502_xsltinjava%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>       
+    </ul>
+
+    
+</div>
+</div>
+                                
+                <div class="col-md-10 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                        
+                        
+                        
+                        <div class="row post-top-meta">
+                            <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0 md-nopad-right">
+                                <img class="author-thumb" src="/images/author.jpg" alt="Bart">
+                            </div>
+                            <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left md-nopad-left">
+                                <a target="_blank" class="link-dark">Bart</a><br>
+                                <span class="author-description">
+                                    Software Tester<br>
+                                    <i class="far fa-star"></i>
+                                    May 2, 2020
+                                    <i class="far fa-clock clock"></i>
+                                    4 min read
+                                </span>					
+                            </div>
+                        </div>			
+                        	
+                        
+                                                
+                        
+                        <h1 class="posttitle">xslt transformations in Java</h1> 
+                    </div>
+
+                    
+                    
+                    
+                        <img class="featured-image img-fluid" src="http://bartvanherck.github.io/20200502_xsltinjava/cover.jpg" alt="thumbnail for this post">
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        <h3 id="i-have-a-problem">I have a problem</h3>
+<p>Today I want to test an application that transforms some data from an xml file to another xml file. The application that our team needs to test is a soa application. In this application there is an xslt located that does the transformation. This means that I need to test the xslt.</p>
+<p>I test the xslt in a separate test project written in java. I write an application that takes an input file. The application transforms the data to the resulting format. At last, the program saves the result in the output file.</p>
+<p>I need some java code that performs the transformation. The variable part is the xslt file. There are plenty websites that can help me. I looked it up in my search engine and got a lot of results. The following code showed up.</p>
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> javax.xml.parsers.DocumentBuilder<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.parsers.DocumentBuilderFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.OutputKeys<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.Source<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.Transformer<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.TransformerFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.URIResolver<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.dom.DOMSource<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.stream.StreamResult<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.xml.transform.stream.StreamSource<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.io.File<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.w3c.dom.Document<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Transformation</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        File xml <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;./input.xml&#34;</span><span style="color:#f92672">);</span>
+        File xsl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;./input.xsl&#34;</span><span style="color:#f92672">);</span>
+        
+        Document document<span style="color:#f92672">;</span>
+        DocumentBuilderFactory factory <span style="color:#f92672">=</span> DocumentBuilderFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+        DocumentBuilder builder <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">newDocumentBuilder</span><span style="color:#f92672">();</span>
+        document <span style="color:#f92672">=</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">parse</span><span style="color:#f92672">(</span>xml<span style="color:#f92672">);</span>
+        <span style="color:#75715e">// Use a Transformer for output
+</span><span style="color:#75715e"></span>        TransformerFactory transformerFactory <span style="color:#f92672">=</span> TransformerFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+        StreamSource style <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StreamSource<span style="color:#f92672">(</span>xsl<span style="color:#f92672">);</span>
+ 
+        Transformer transformer <span style="color:#f92672">=</span> transformerFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newTransformer</span><span style="color:#f92672">(</span>style<span style="color:#f92672">);</span>
+        transformer<span style="color:#f92672">.</span><span style="color:#a6e22e">setOutputProperty</span><span style="color:#f92672">(</span>OutputKeys<span style="color:#f92672">.</span><span style="color:#a6e22e">INDENT</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;yes&#34;</span><span style="color:#f92672">);</span>
+        DOMSource source <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DOMSource<span style="color:#f92672">(</span>document<span style="color:#f92672">);</span>
+        StreamResult result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StreamResult<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">);</span>
+       
+        transformer<span style="color:#f92672">.</span><span style="color:#a6e22e">transform</span><span style="color:#f92672">(</span>source<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+There is a problem. The output is not correct. The xslt transformation does not fill in the values. What is happening?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;person:createResponse</span> <span style="color:#a6e22e">xmlns:person=</span><span style="color:#e6db74">&#34;services.person&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;person:firstName/&gt;</span>
+    <span style="color:#f92672">&lt;person:familyName/&gt;</span>
+<span style="color:#f92672">&lt;/person:createResponse&gt;</span></code></pre></div>
+<p>The input data that I use is not that complex:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span style="color:#f92672">&lt;getPersonResponse</span> <span style="color:#a6e22e">xmlns:mes=</span><span style="color:#e6db74">&#34;messages&#34;</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;messages&#34;</span><span style="color:#f92672">&gt;</span>
+ <span style="color:#f92672">&lt;mes:person&gt;</span>
+    <span style="color:#f92672">&lt;tns:personDetails</span> <span style="color:#a6e22e">xmlns:tns=</span><span style="color:#e6db74">&#34;person&#34;</span><span style="color:#f92672">&gt;</span>
+       <span style="color:#f92672">&lt;tns:surname&gt;</span>GHOST<span style="color:#f92672">&lt;/tns:surname&gt;</span>
+       <span style="color:#f92672">&lt;tns:nickName&gt;</span>BABY<span style="color:#f92672">&lt;/tns:nickName&gt;</span>
+    <span style="color:#f92672">&lt;/tns:personDetails&gt;</span>
+ <span style="color:#f92672">&lt;/mes:person&gt;</span>
+<span style="color:#f92672">&lt;/getPersonResponse&gt;</span></code></pre></div></p>
+<p>And the transformation is like this.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span style="color:#f92672">&lt;xsl:stylesheet</span> <span style="color:#a6e22e">version=</span><span style="color:#e6db74">&#34;1.0&#34;</span>
+                <span style="color:#a6e22e">xmlns:xsl=</span><span style="color:#e6db74">&#34;http://www.w3.org/1999/XSL/Transform&#34;</span>
+                <span style="color:#a6e22e">xmlns:tns=</span><span style="color:#e6db74">&#34;services.tns&#34;</span>
+                <span style="color:#a6e22e">xmlns:person=</span><span style="color:#e6db74">&#34;services.person&#34;</span>
+                <span style="color:#a6e22e">xmlns:mes=</span><span style="color:#e6db74">&#34;messages&#34;</span>
+                <span style="color:#a6e22e">xmlns:per=</span><span style="color:#e6db74">&#34;person&#34;</span>
+                <span style="color:#a6e22e">exclude-result-prefixes=</span><span style="color:#e6db74">&#34;xsl tns mes per mind&#34;</span>
+                <span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;xsl:template</span> <span style="color:#a6e22e">match=</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;person:createResponse&gt;</span>
+      <span style="color:#f92672">&lt;person:firstName&gt;</span>
+        <span style="color:#f92672">&lt;xsl:value-of</span> <span style="color:#a6e22e">select=</span><span style="color:#e6db74">&#34;/mes:getPersonResponse/mes:person/per:personDetails/per:nickName&#34;</span><span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;/person:firstName&gt;</span>
+      <span style="color:#f92672">&lt;person:familyName&gt;</span>
+        <span style="color:#f92672">&lt;xsl:value-of</span> <span style="color:#a6e22e">select=</span><span style="color:#e6db74">&#34;/mes:getPersonResponse/mes:person/per:personDetails/per:surname&#34;</span><span style="color:#f92672">/&gt;</span>
+      <span style="color:#f92672">&lt;/person:familyName&gt;</span>
+    <span style="color:#f92672">&lt;/person:createResponse&gt;</span>
+  <span style="color:#f92672">&lt;/xsl:template&gt;</span>
+<span style="color:#f92672">&lt;/xsl:stylesheet&gt;</span></code></pre></div></p>
+<h3 id="is-the-xslt-wrong-or-the-java-code">Is the xslt wrong or the java code?</h3>
+<p>Is the xslt wrong? Is the java code wrong? The java code seems to be correct at first sight. I did test it with another xslt file and orhter input files. That works like it supposed to work. After searching a lot I told the developers of the team my problem. One of them helped me with that problem. He did also not find a solution in 5 minutes.</p>
+<p>I did want to know where the problem is. Is it the code or the xslt. In the program that we are making, the xslt works. But why did it not work in my test environment? I created a python program to do the same xslt transformation.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> lxml.etree <span style="color:#f92672">as</span> ET
+
+dom <span style="color:#f92672">=</span> ET<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#34;input.xml&#34;</span>)
+xslt <span style="color:#f92672">=</span> ET<span style="color:#f92672">.</span>parse(<span style="color:#e6db74">&#34;input.xsl&#34;</span>)
+transform <span style="color:#f92672">=</span> ET<span style="color:#f92672">.</span>XSLT(xslt)
+newdom <span style="color:#f92672">=</span> transform(dom)
+<span style="color:#66d9ef">print</span>(ET<span style="color:#f92672">.</span>tostring(newdom, pretty_print<span style="color:#f92672">=</span>True)<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#39;utf-8&#39;</span>))</code></pre></div>
+<p>This program did the transformation correctly. So I was sure now that the xslt and the input data is correct. The problem is in the java code.</p>
+<h3 id="the-solution">The solution</h3>
+<p>What could be the solution to this transformation problem? We searched that day. It was Friday evening and we did not find any solution. Having a weekend with no real solution. That is not satisfiing. After the weekend, I had a message in our team chat. One of the developers had found a solution in the weekend. I tried it with all my input data. And indeed, it worked.</p>
+<p>The solution is very simple. Do not parse the xml into a Document, but keep it in a StreamSource.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+    String xslFile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./input.xsl&#34;</span><span style="color:#f92672">;</span>
+    String xmlFile <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./input.xml&#34;</span><span style="color:#f92672">;</span>
+
+    TransformerFactory transformerFactory <span style="color:#f92672">=</span> TransformerFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newInstance</span><span style="color:#f92672">();</span>
+    StreamSource xslSource <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StreamSource<span style="color:#f92672">(</span>xslFile<span style="color:#f92672">);</span>
+    Transformer transformer <span style="color:#f92672">=</span> transformerFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">newTransformer</span><span style="color:#f92672">(</span>xslSource<span style="color:#f92672">);</span>
+    StreamSource xmlSource <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StreamSource<span style="color:#f92672">(</span>xmlFile<span style="color:#f92672">);</span>
+    StreamResult result <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StreamResult<span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">);</span>
+
+    transformer<span style="color:#f92672">.</span><span style="color:#a6e22e">setOutputProperty</span><span style="color:#f92672">(</span>OutputKeys<span style="color:#f92672">.</span><span style="color:#a6e22e">INDENT</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;yes&#34;</span><span style="color:#f92672">);</span>  <span style="color:#75715e">// to have nice output on screen
+</span><span style="color:#75715e"></span>    transformer<span style="color:#f92672">.</span><span style="color:#a6e22e">transform</span><span style="color:#f92672">(</span>xmlSource<span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;person:createResponse</span> <span style="color:#a6e22e">xmlns:person=</span><span style="color:#e6db74">&#34;services.person&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;person:firstName&gt;</span>BABY<span style="color:#f92672">&lt;/person:firstName&gt;</span>
+    <span style="color:#f92672">&lt;person:familyName&gt;</span>GHOST<span style="color:#f92672">&lt;/person:familyName&gt;</span>
+<span style="color:#f92672">&lt;/person:createResponse&gt;</span></code></pre></div>
+<p>Now we can test our xslt transformations with our test framework.</p>
+<h3 id="what-did-i-learn-">What did I learn ?</h3>
+<ul>
+<li>Do not hesitate to get help from your developers. They want to help and they will help.</li>
+<li>Try to narrow the problem. Use other languages if needed to pinpoint to the real problem.</li>
+</ul>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/testing">testing</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/java">java</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="http://bartvanherck.github.io/20190629_readed/">What I read &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/git">git</a>
+			
+			<a class="mt-1 mb-1" href="/tags/java">java</a>
+			
+			<a class="mt-1 mb-1" href="/tags/testing">testing</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+    </body>
+</html>

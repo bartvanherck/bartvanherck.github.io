@@ -3,8 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://bartvanherck.github.io/blog/</loc>
-    <lastmod>2019-06-29T18:00:00+01:00</lastmod>
+    <loc>http://bartvanherck.github.io/tags/java/</loc>
+    <lastmod>2020-05-02T10:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bartvanherck.github.io/tags/</loc>
+    <lastmod>2020-05-02T10:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bartvanherck.github.io/tags/testing/</loc>
+    <lastmod>2020-05-02T10:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bartvanherck.github.io/</loc>
+    <lastmod>2020-05-02T10:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://bartvanherck.github.io/20200502_xsltinjava/</loc>
+    <lastmod>2020-05-02T10:00:00+01:00</lastmod>
   </url>
   
   <url>
@@ -13,37 +33,22 @@
   </url>
   
   <url>
-    <loc>http://bartvanherck.github.io/tags/</loc>
+    <loc>http://bartvanherck.github.io/20190629_readed/</loc>
     <lastmod>2019-06-29T18:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://bartvanherck.github.io/tags/testing/</loc>
-    <lastmod>2019-06-29T18:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://bartvanherck.github.io/</loc>
-    <lastmod>2019-06-29T18:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://bartvanherck.github.io/blog/20190629_readed/</loc>
-    <lastmod>2019-06-29T18:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://bartvanherck.github.io/blog/20190614_reasons/</loc>
+    <loc>http://bartvanherck.github.io/20190614_reasons/</loc>
     <lastmod>2019-06-14T18:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://bartvanherck.github.io/blog/20190613_reports/</loc>
+    <loc>http://bartvanherck.github.io/20190613_reports/</loc>
     <lastmod>2019-06-13T18:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://bartvanherck.github.io/blog/20190612_swiping/</loc>
+    <loc>http://bartvanherck.github.io/20190612_swiping/</loc>
     <lastmod>2019-06-12T18:00:00+01:00</lastmod>
   </url>
   

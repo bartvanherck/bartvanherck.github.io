@@ -6,17 +6,141 @@
     <description>Recent content in testing on Testing is Fun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jun 2019 18:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2020 10:00:00 +0100</lastBuildDate>
     
 	<atom:link href="http://bartvanherck.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>xslt transformations in Java</title>
+      <link>http://bartvanherck.github.io/20200502_xsltinjava/</link>
+      <pubDate>Sat, 02 May 2020 10:00:00 +0100</pubDate>
+      
+      <guid>http://bartvanherck.github.io/20200502_xsltinjava/</guid>
+      <description>&lt;h3 id=&#34;i-have-a-problem&#34;&gt;I have a problem&lt;/h3&gt;
+&lt;p&gt;Today I want to test an application that transforms some data from an xml file to another xml file. The application that our team needs to test is a soa application. In this application there is an xslt located that does the transformation. This means that I need to test the xslt.&lt;/p&gt;
+&lt;p&gt;I test the xslt in a separate test project written in java. I write an application that takes an input file. The application transforms the data to the resulting format. At last, the program saves the result in the output file.&lt;/p&gt;
+&lt;p&gt;I need some java code that performs the transformation. The variable part is the xslt file. There are plenty websites that can help me. I looked it up in my search engine and got a lot of results. The following code showed up.&lt;/p&gt;
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.parsers.DocumentBuilder&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.parsers.DocumentBuilderFactory&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.OutputKeys&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.Source&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.Transformer&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.TransformerFactory&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.URIResolver&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.dom.DOMSource&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.stream.StreamResult&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; javax.xml.transform.stream.StreamSource&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; java.io.File&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; org.w3c.dom.Document&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Transformation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; Exception &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+        File xml &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./input.xml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        File xsl &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; File&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./input.xsl&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        
+        Document document&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+        DocumentBuilderFactory factory &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; DocumentBuilderFactory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newInstance&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+        DocumentBuilder builder &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; factory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newDocumentBuilder&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+        document &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; builder&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;parse&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xml&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        &lt;span style=&#34;color:#75715e&#34;&gt;// Use a Transformer for output
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        TransformerFactory transformerFactory &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; TransformerFactory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newInstance&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+        StreamSource style &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; StreamSource&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xsl&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+ 
+        Transformer transformer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transformerFactory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newTransformer&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;style&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        transformer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;setOutputProperty&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;OutputKeys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;INDENT&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yes&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        DOMSource source &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; DOMSource&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;document&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+        StreamResult result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; StreamResult&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;System&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+       
+        transformer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;transform&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;source&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; result&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+There is a problem. The output is not correct. The xslt transformation does not fill in the values. What is happening?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:createResponse&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:person=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;services.person&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:firstName/&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:familyName/&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:createResponse&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The input data that I use is not that complex:
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; ?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;getPersonResponse&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:mes=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;messages&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;messages&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;mes:person&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;tns:personDetails&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:tns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;person&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+       &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;tns:surname&amp;gt;&lt;/span&gt;GHOST&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/tns:surname&amp;gt;&lt;/span&gt;
+       &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;tns:nickName&amp;gt;&lt;/span&gt;BABY&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/tns:nickName&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/tns:personDetails&amp;gt;&lt;/span&gt;
+ &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/mes:person&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/getPersonResponse&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;And the transformation is like this.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34; ?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;xsl:stylesheet&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;version=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1.0&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:xsl=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;http://www.w3.org/1999/XSL/Transform&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:tns=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;services.tns&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:person=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;services.person&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:mes=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;messages&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:per=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;person&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#a6e22e&#34;&gt;exclude-result-prefixes=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;xsl tns mes per mind&amp;#34;&lt;/span&gt;
+                &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;xsl:template&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;match=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:createResponse&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:firstName&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;xsl:value-of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;select=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/mes:getPersonResponse/mes:person/per:personDetails/per:nickName&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:firstName&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:familyName&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;xsl:value-of&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;select=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/mes:getPersonResponse/mes:person/per:personDetails/per:surname&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;/&amp;gt;&lt;/span&gt;
+      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:familyName&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:createResponse&amp;gt;&lt;/span&gt;
+  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/xsl:template&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/xsl:stylesheet&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
+&lt;h3 id=&#34;is-the-xslt-wrong-or-the-java-code&#34;&gt;Is the xslt wrong or the java code?&lt;/h3&gt;
+&lt;p&gt;Is the xslt wrong? Is the java code wrong? The java code seems to be correct at first sight. I did test it with another xslt file and orhter input files. That works like it supposed to work. After searching a lot I told the developers of the team my problem. One of them helped me with that problem. He did also not find a solution in 5 minutes.&lt;/p&gt;
+&lt;p&gt;I did want to know where the problem is. Is it the code or the xslt. In the program that we are making, the xslt works. But why did it not work in my test environment? I created a python program to do the same xslt transformation.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; lxml.etree &lt;span style=&#34;color:#f92672&#34;&gt;as&lt;/span&gt; ET
+
+dom &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ET&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parse(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;input.xml&amp;#34;&lt;/span&gt;)
+xslt &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ET&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parse(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;input.xsl&amp;#34;&lt;/span&gt;)
+transform &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ET&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;XSLT(xslt)
+newdom &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transform(dom)
+&lt;span style=&#34;color:#66d9ef&#34;&gt;print&lt;/span&gt;(ET&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;tostring(newdom, pretty_print&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;True)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;decode(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This program did the transformation correctly. So I was sure now that the xslt and the input data is correct. The problem is in the java code.&lt;/p&gt;
+&lt;h3 id=&#34;the-solution&#34;&gt;The solution&lt;/h3&gt;
+&lt;p&gt;What could be the solution to this transformation problem? We searched that day. It was Friday evening and we did not find any solution. Having a weekend with no real solution. That is not satisfiing. After the weekend, I had a message in our team chat. One of the developers had found a solution in the weekend. I tried it with all my input data. And indeed, it worked.&lt;/p&gt;
+&lt;p&gt;The solution is very simple. Do not parse the xml into a Document, but keep it in a StreamSource.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;throws&lt;/span&gt; Exception &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;
+    String xslFile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./input.xsl&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+    String xmlFile &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;./input.xml&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;;&lt;/span&gt;
+
+    TransformerFactory transformerFactory &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; TransformerFactory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newInstance&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;();&lt;/span&gt;
+    StreamSource xslSource &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; StreamSource&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xslFile&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    Transformer transformer &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transformerFactory&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;newTransformer&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xslSource&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    StreamSource xmlSource &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; StreamSource&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xmlFile&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+    StreamResult result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;new&lt;/span&gt; StreamResult&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;System&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;out&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+
+    transformer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;setOutputProperty&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;OutputKeys&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;INDENT&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;yes&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// to have nice output on screen
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    transformer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;transform&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;(&lt;/span&gt;xmlSource&lt;span style=&#34;color:#f92672&#34;&gt;,&lt;/span&gt; result&lt;span style=&#34;color:#f92672&#34;&gt;);&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:createResponse&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;xmlns:person=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;services.person&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:firstName&amp;gt;&lt;/span&gt;BABY&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:firstName&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;person:familyName&amp;gt;&lt;/span&gt;GHOST&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:familyName&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/person:createResponse&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we can test our xslt transformations with our test framework.&lt;/p&gt;
+&lt;h3 id=&#34;what-did-i-learn-&#34;&gt;What did I learn ?&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Do not hesitate to get help from your developers. They want to help and they will help.&lt;/li&gt;
+&lt;li&gt;Try to narrow the problem. Use other languages if needed to pinpoint to the real problem.&lt;/li&gt;
+&lt;/ul&gt;
+<br /><div><a href="http://bartvanherck.github.io/20200502_xsltinjava/">Read the complete article.</a></div>
+      </description>
+    </item>
+    
+    <item>
       <title>What I read</title>
-      <link>http://bartvanherck.github.io/blog/20190629_readed/</link>
+      <link>http://bartvanherck.github.io/20190629_readed/</link>
       <pubDate>Sat, 29 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/blog/20190629_readed/</guid>
+      <guid>http://bartvanherck.github.io/20190629_readed/</guid>
       <description>&lt;p&gt;Some documents that are really usefull to read:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/tools/htsm.pdf&#34;&gt;Heuristic Test Strategy Model&lt;/a&gt;&lt;/li&gt;
@@ -27,16 +151,16 @@
 &lt;li&gt;&lt;a href=&#34;http://testobsessed.com/wp-content/uploads/2011/04/testheuristicscheatsheetv1.pdf&#34;&gt;Test Heuristic Cheat Sheet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Happy reading!&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/blog/20190629_readed/">Read the complete article.</a></div>
+<br /><div><a href="http://bartvanherck.github.io/20190629_readed/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Reasons to create Unit Tests</title>
-      <link>http://bartvanherck.github.io/blog/20190614_reasons/</link>
+      <link>http://bartvanherck.github.io/20190614_reasons/</link>
       <pubDate>Fri, 14 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/blog/20190614_reasons/</guid>
+      <guid>http://bartvanherck.github.io/20190614_reasons/</guid>
       <description>&lt;p&gt;Writing unit tests for API&amp;rsquo;s is a waste of time. A waste of time? Yes, I am developing an API. The API is not stable yet. Today I need to rewrite some calls and now all my tests fail. I need to update all those unit tests. If I did not have to write tests, my code was already finished.&lt;/p&gt;
 &lt;p&gt;Yes, it is. By changing an interface or API, you need to update the existing tests. It is possible that many tests needs an update. Updating tests takes some time and costs something. Does this mean that writing unit tests is a waste of time?&lt;/p&gt;
 &lt;h3 id=&#34;unit-testing-is-like-walking&#34;&gt;Unit Testing is like walking.&lt;/h3&gt;
@@ -65,39 +189,39 @@
 &lt;p&gt;Writing unit tests is a very good idea. It is better to run them in an automated way on a continuous integration server. Then the server executes the tests as soon as you put the new code in version control. Everybody notices it when the tests are failing on the continuous integration server. This is an advantage. Developers will fix the failing tests much faster. Nobody likes a failing build.&lt;/p&gt;
 &lt;h3 id=&#34;wrap-up&#34;&gt;Wrap up&lt;/h3&gt;
 &lt;p&gt;Writing unit tests is a good way of working. In the beginning it is hard. It is worth the effort. The end user will be much happier with a product that has less bugs.&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/blog/20190614_reasons/">Read the complete article.</a></div>
+<br /><div><a href="http://bartvanherck.github.io/20190614_reasons/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Test Reports are Dead</title>
-      <link>http://bartvanherck.github.io/blog/20190613_reports/</link>
+      <link>http://bartvanherck.github.io/20190613_reports/</link>
       <pubDate>Thu, 13 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/blog/20190613_reports/</guid>
+      <guid>http://bartvanherck.github.io/20190613_reports/</guid>
       <description>&lt;p&gt;At the testnet conference, I attended to a talk of Gerlof Hoekstra. According to him our test documentation is not readed by anyone, or maybe even misinterpreted. This because they only contains figures and no real story. It looks that he has remembered the previous talk, but he has a point. Should a Tester give an advice to our developers to release or should the content of a report be so clear that everyone can decide for himself if the product can be released?&lt;/p&gt;
 &lt;p&gt;To have documentation that does matter, that is usefull, we should act like we are the reader. What does the reader wants to know? Take for example a weather forecast. What does the recipient want to know? He wants to know if it is going to rain tomorrow or if the sun is shining. So a prediction of the future. The weather report is short and visible, with maps and symbols.&lt;/p&gt;
 &lt;p&gt;Why should we not use that kind of things?&lt;/p&gt;
 &lt;p&gt;So instead of a report, it is better to have a stream of information. So Why not make information available at any time. But how detailed we want to have our reporting? Depends on the reader.
 Some of them wants to know if a requirement or user story is ready. Others want to know more detailed. This can also be put in a kind of daily blog post that we can share across our organisations.&lt;/p&gt;
 &lt;p&gt;This idea is a nice one I think. Why not blog more in the company to share ideas or forecasts of the project?&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/blog/20190613_reports/">Read the complete article.</a></div>
+<br /><div><a href="http://bartvanherck.github.io/20190613_reports/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Swiping on a touch screen</title>
-      <link>http://bartvanherck.github.io/blog/20190612_swiping/</link>
+      <link>http://bartvanherck.github.io/20190612_swiping/</link>
       <pubDate>Wed, 12 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/blog/20190612_swiping/</guid>
+      <guid>http://bartvanherck.github.io/20190612_swiping/</guid>
       <description>&lt;p&gt;We had already a few months a problem on the machines touchscreen that our interface behaved differently with a finger swipe as with a mouse drag and drop. The problem was that swiping from left to right was navigating to the previous page. And swiping the other way around was taking us to the next page.&lt;/p&gt;
 &lt;p&gt;Because a customer does not need to know that our interface is in fact a html page, this is unwanted behavior from user testings point of view. In the options of Chrome itself I could not find any options that could explain this behavior.&lt;/p&gt;
 &lt;p&gt;But there is a solution. Just start chrome or chromium with a command line switch.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  --overscroll-history-navigation&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Did you know that chrome has a lot of command line parameters? Look at &lt;a href=&#34;http://peter.sh/experiments/chromium-command-line-switches/&#34;&gt;Peter Beverloo’s page&lt;/a&gt; for an overview.&lt;/p&gt;
 &lt;p&gt;You see, as a tester you also need to think how we can solve bugs, because not all bugs are code related.&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/blog/20190612_swiping/">Read the complete article.</a></div>
+<br /><div><a href="http://bartvanherck.github.io/20190612_swiping/">Read the complete article.</a></div>
       </description>
     </item>
     

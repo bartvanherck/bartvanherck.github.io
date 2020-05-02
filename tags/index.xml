@@ -6,10 +6,30 @@
     <description>Recent content in Tags on Testing is Fun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jun 2019 18:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 02 May 2020 10:00:00 +0100</lastBuildDate>
     
 	<atom:link href="http://bartvanherck.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>java</title>
+      <link>http://bartvanherck.github.io/tags/java/</link>
+      <pubDate>Sat, 02 May 2020 10:00:00 +0100</pubDate>
+      
+      <guid>http://bartvanherck.github.io/tags/java/</guid>
+      <description><br /><div><a href="http://bartvanherck.github.io/tags/java/">Read the complete article.</a></div>
+      </description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>http://bartvanherck.github.io/tags/testing/</link>
+      <pubDate>Sat, 02 May 2020 10:00:00 +0100</pubDate>
+      
+      <guid>http://bartvanherck.github.io/tags/testing/</guid>
+      <description><br /><div><a href="http://bartvanherck.github.io/tags/testing/">Read the complete article.</a></div>
+      </description>
+    </item>
     
     <item>
       <title>git</title>
@@ -18,16 +38,6 @@
       
       <guid>http://bartvanherck.github.io/tags/git/</guid>
       <description><br /><div><a href="http://bartvanherck.github.io/tags/git/">Read the complete article.</a></div>
-      </description>
-    </item>
-    
-    <item>
-      <title>testing</title>
-      <link>http://bartvanherck.github.io/tags/testing/</link>
-      <pubDate>Sat, 29 Jun 2019 18:00:00 +0100</pubDate>
-      
-      <guid>http://bartvanherck.github.io/tags/testing/</guid>
-      <description><br /><div><a href="http://bartvanherck.github.io/tags/testing/">Read the complete article.</a></div>
       </description>
     </item>
     
