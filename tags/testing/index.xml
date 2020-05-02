@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>testing on Testing is Fun</title>
-    <link>http://bartvanherck.github.io/tags/testing/</link>
+    <link>https://bartvanherck.github.io/tags/testing/</link>
     <description>Recent content in testing on Testing is Fun</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 02 May 2020 10:00:00 +0100</lastBuildDate>
     
-	<atom:link href="http://bartvanherck.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bartvanherck.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>xslt transformations in Java</title>
-      <link>http://bartvanherck.github.io/20200502_xsltinjava/</link>
+      <link>https://bartvanherck.github.io/20200502_xsltinjava/</link>
       <pubDate>Sat, 02 May 2020 10:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/20200502_xsltinjava/</guid>
+      <guid>https://bartvanherck.github.io/20200502_xsltinjava/</guid>
       <description>&lt;h3 id=&#34;i-have-a-problem&#34;&gt;I have a problem&lt;/h3&gt;
 &lt;p&gt;Today I want to test an application that transforms some data from an xml file to another xml file. The application that our team needs to test is a soa application. In this application there is an xslt located that does the transformation. This means that I need to test the xslt.&lt;/p&gt;
 &lt;p&gt;I test the xslt in a separate test project written in java. I write an application that takes an input file. The application transforms the data to the resulting format. At last, the program saves the result in the output file.&lt;/p&gt;
@@ -131,16 +131,16 @@ newdom &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transform(dom)
 &lt;li&gt;Do not hesitate to get help from your developers. They want to help and they will help.&lt;/li&gt;
 &lt;li&gt;Try to narrow the problem. Use other languages if needed to pinpoint to the real problem.&lt;/li&gt;
 &lt;/ul&gt;
-<br /><div><a href="http://bartvanherck.github.io/20200502_xsltinjava/">Read the complete article.</a></div>
+<br /><div><a href="https://bartvanherck.github.io/20200502_xsltinjava/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>What I read</title>
-      <link>http://bartvanherck.github.io/20190629_readed/</link>
+      <link>https://bartvanherck.github.io/20190629_readed/</link>
       <pubDate>Sat, 29 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/20190629_readed/</guid>
+      <guid>https://bartvanherck.github.io/20190629_readed/</guid>
       <description>&lt;p&gt;Some documents that are really usefull to read:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.satisfice.com/tools/htsm.pdf&#34;&gt;Heuristic Test Strategy Model&lt;/a&gt;&lt;/li&gt;
@@ -151,16 +151,16 @@ newdom &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transform(dom)
 &lt;li&gt;&lt;a href=&#34;http://testobsessed.com/wp-content/uploads/2011/04/testheuristicscheatsheetv1.pdf&#34;&gt;Test Heuristic Cheat Sheet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Happy reading!&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/20190629_readed/">Read the complete article.</a></div>
+<br /><div><a href="https://bartvanherck.github.io/20190629_readed/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Reasons to create Unit Tests</title>
-      <link>http://bartvanherck.github.io/20190614_reasons/</link>
+      <link>https://bartvanherck.github.io/20190614_reasons/</link>
       <pubDate>Fri, 14 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/20190614_reasons/</guid>
+      <guid>https://bartvanherck.github.io/20190614_reasons/</guid>
       <description>&lt;p&gt;Writing unit tests for API&amp;rsquo;s is a waste of time. A waste of time? Yes, I am developing an API. The API is not stable yet. Today I need to rewrite some calls and now all my tests fail. I need to update all those unit tests. If I did not have to write tests, my code was already finished.&lt;/p&gt;
 &lt;p&gt;Yes, it is. By changing an interface or API, you need to update the existing tests. It is possible that many tests needs an update. Updating tests takes some time and costs something. Does this mean that writing unit tests is a waste of time?&lt;/p&gt;
 &lt;h3 id=&#34;unit-testing-is-like-walking&#34;&gt;Unit Testing is like walking.&lt;/h3&gt;
@@ -189,39 +189,39 @@ newdom &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; transform(dom)
 &lt;p&gt;Writing unit tests is a very good idea. It is better to run them in an automated way on a continuous integration server. Then the server executes the tests as soon as you put the new code in version control. Everybody notices it when the tests are failing on the continuous integration server. This is an advantage. Developers will fix the failing tests much faster. Nobody likes a failing build.&lt;/p&gt;
 &lt;h3 id=&#34;wrap-up&#34;&gt;Wrap up&lt;/h3&gt;
 &lt;p&gt;Writing unit tests is a good way of working. In the beginning it is hard. It is worth the effort. The end user will be much happier with a product that has less bugs.&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/20190614_reasons/">Read the complete article.</a></div>
+<br /><div><a href="https://bartvanherck.github.io/20190614_reasons/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Test Reports are Dead</title>
-      <link>http://bartvanherck.github.io/20190613_reports/</link>
+      <link>https://bartvanherck.github.io/20190613_reports/</link>
       <pubDate>Thu, 13 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/20190613_reports/</guid>
+      <guid>https://bartvanherck.github.io/20190613_reports/</guid>
       <description>&lt;p&gt;At the testnet conference, I attended to a talk of Gerlof Hoekstra. According to him our test documentation is not readed by anyone, or maybe even misinterpreted. This because they only contains figures and no real story. It looks that he has remembered the previous talk, but he has a point. Should a Tester give an advice to our developers to release or should the content of a report be so clear that everyone can decide for himself if the product can be released?&lt;/p&gt;
 &lt;p&gt;To have documentation that does matter, that is usefull, we should act like we are the reader. What does the reader wants to know? Take for example a weather forecast. What does the recipient want to know? He wants to know if it is going to rain tomorrow or if the sun is shining. So a prediction of the future. The weather report is short and visible, with maps and symbols.&lt;/p&gt;
 &lt;p&gt;Why should we not use that kind of things?&lt;/p&gt;
 &lt;p&gt;So instead of a report, it is better to have a stream of information. So Why not make information available at any time. But how detailed we want to have our reporting? Depends on the reader.
 Some of them wants to know if a requirement or user story is ready. Others want to know more detailed. This can also be put in a kind of daily blog post that we can share across our organisations.&lt;/p&gt;
 &lt;p&gt;This idea is a nice one I think. Why not blog more in the company to share ideas or forecasts of the project?&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/20190613_reports/">Read the complete article.</a></div>
+<br /><div><a href="https://bartvanherck.github.io/20190613_reports/">Read the complete article.</a></div>
       </description>
     </item>
     
     <item>
       <title>Swiping on a touch screen</title>
-      <link>http://bartvanherck.github.io/20190612_swiping/</link>
+      <link>https://bartvanherck.github.io/20190612_swiping/</link>
       <pubDate>Wed, 12 Jun 2019 18:00:00 +0100</pubDate>
       
-      <guid>http://bartvanherck.github.io/20190612_swiping/</guid>
+      <guid>https://bartvanherck.github.io/20190612_swiping/</guid>
       <description>&lt;p&gt;We had already a few months a problem on the machines touchscreen that our interface behaved differently with a finger swipe as with a mouse drag and drop. The problem was that swiping from left to right was navigating to the previous page. And swiping the other way around was taking us to the next page.&lt;/p&gt;
 &lt;p&gt;Because a customer does not need to know that our interface is in fact a html page, this is unwanted behavior from user testings point of view. In the options of Chrome itself I could not find any options that could explain this behavior.&lt;/p&gt;
 &lt;p&gt;But there is a solution. Just start chrome or chromium with a command line switch.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  --overscroll-history-navigation&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Did you know that chrome has a lot of command line parameters? Look at &lt;a href=&#34;http://peter.sh/experiments/chromium-command-line-switches/&#34;&gt;Peter Beverloo’s page&lt;/a&gt; for an overview.&lt;/p&gt;
 &lt;p&gt;You see, as a tester you also need to think how we can solve bugs, because not all bugs are code related.&lt;/p&gt;
-<br /><div><a href="http://bartvanherck.github.io/20190612_swiping/">Read the complete article.</a></div>
+<br /><div><a href="https://bartvanherck.github.io/20190612_swiping/">Read the complete article.</a></div>
       </description>
     </item>
     
